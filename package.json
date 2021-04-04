@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "test": "textlint-scripts test",
+    "lint": "eslint src/**/*.ts test/**/*.ts",
     "build": "textlint-scripts build",
     "prepublish": "npm run --if-present build",
     "watch": "textlint-scripts build --watch"
