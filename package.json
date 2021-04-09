@@ -34,7 +34,8 @@
   },
   "name": "textlint-rule-no-puctuation-in-header",
   "directories": {
-    "test": "test"
+    "test": "test",
+    "lint": "eslint --ext .ts"
   },
   "author": "chick-p",
   "license": "MIT",
