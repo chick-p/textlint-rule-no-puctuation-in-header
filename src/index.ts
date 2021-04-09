@@ -1,31 +1,44 @@
 import { TextlintRuleModule } from "@textlint/types";
+import checkEndsWithPeriod from "check-ends-with-period";
+import Source from "structured-source";
 
 export interface Options {
-  // if the Str includes `allows` word, does not report it
-  allows?: string[];
+  periodMarks?: string[];
 }
 
-const report: TextlintRuleModule<Options> = (context, options = {}) => {
-  const { Syntax, RuleError, report, getSource } = context;
-  const allows = options.allows || [];
+const defaultOptions: Options = {
+  periodMarks: ["。", "."],
+};
+
+const report: TextlintRuleModule<Options> = (context, options) => {
+  const { Syntax, RuleError, report, getSource, fixer } = context;
   return {
-    [Syntax.Str](node) {
-      // "Str" node
-      const text = getSource(node); // Get text
-      const matches = /bugs/g.exec(text); // Found "bugs"
-      if (!matches) {
-        return;
+    [Syntax.Header](node) {
+      const raw = getSource(node);
+      const source = new Source(raw);
+      const resultForPeriod = checkEndsWithPeriod(
+        raw,
+        options || defaultOptions
+      );
+      if (resultForPeriod.valid) {
+        const index = source.positionToIndex({
+          line: node.loc.start.line,
+          column: resultForPeriod.index,
+        });
+        const ruleError = new RuleError("Ends with period", {
+          index,
+          fix: fixer.removeRange([
+            resultForPeriod.index,
+            resultForPeriod.index + 1,
+          ]),
+        });
+        report(node, ruleError);
       }
-      const isIgnored = allows.some((allow) => text.includes(allow));
-      if (isIgnored) {
-        return;
-      }
-      const indexOfBugs = matches.index;
-      const ruleError = new RuleError("Found bugs.", {
-        index: indexOfBugs, // padding of index
-      });
-      report(node, ruleError);
     },
   };
 };
-export default report;
+
+export default {
+  linter: report,
+  fixer: report,
+};
