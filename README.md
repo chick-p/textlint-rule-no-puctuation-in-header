@@ -2,6 +2,8 @@
 
 A textlint rule to check the header text is ends with period mark.
 
+![](https://github.com/chick-p/textlint-rule-no-puctuation-in-header/workflows/test/badge.svg?branch=master)
+
 ## Install
 
 Install with [npm](https://www.npmjs.com/):
