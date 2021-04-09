@@ -1,21 +1,11 @@
 {
+  "name": "textlint-rule-no-puctuation-in-header",
+  "description": "",
   "version": "0.1.0",
-  "keywords": [
-    "textlintrule"
-  ],
-  "main": "lib/index.js",
-  "private": true,
-  "files": [
-    "lib/",
-    "src/"
-  ],
-  "scripts": {
-    "test": "textlint-scripts test",
-    "lint": "eslint src/**/*.ts test/**/*.ts",
-    "prepare": "npm run build",
-    "build": "textlint-scripts build",
-    "prepublish": "npm run --if-present build",
-    "watch": "textlint-scripts build --watch"
+  "author": "chick-p",
+  "dependencies": {
+    "check-ends-with-period": "^1.0.1",
+    "structured-source": "^3.0.2"
   },
   "devDependencies": {
     "@textlint/types": "^1.5.4",
@@ -32,19 +22,29 @@
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3"
   },
-  "name": "textlint-rule-no-puctuation-in-header",
   "directories": {
     "test": "test",
     "lint": "eslint --ext .ts"
   },
-  "author": "chick-p",
+  "files": [
+    "lib/",
+    "src/"
+  ],
+  "keywords": [
+    "textlintrule"
+  ],
   "license": "MIT",
-  "description": "",
-  "dependencies": {
-    "check-ends-with-period": "^1.0.1",
-    "structured-source": "^3.0.2"
-  },
+  "main": "lib/index.js",
   "peerDependencies": {
     "textlint": ">= 5.5.0"
+  },
+  "private": true,
+  "scripts": {
+    "build": "textlint-scripts build",
+    "lint": "eslint src/**/*.ts test/**/*.ts",
+    "prepare": "npm run build",
+    "prepublish": "npm run --if-present build",
+    "test": "textlint-scripts test",
+    "watch": "textlint-scripts build --watch"
   }
 }
