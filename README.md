@@ -43,7 +43,8 @@ Please write your configurations in `.textlintrc`.
 {
   "rules": {
     "no-puctuation-in-header": {
-      "periodMarks": ["。", "."]
+      "periodMarks": ["。", "."],
+      "commaMarks": ["、", ","]
     }
   }
 }
@@ -52,6 +53,7 @@ Please write your configurations in `.textlintrc`.
 | Options     | Type            | Default value | Description  |
 | :---------- | :-------------- | :------------ | :----------- |
 | periodMarks | Array\<String\> | `["。", "."]` | period mark. |
+| commaMarks  | Array\<String\> | `["、", ","]` | comma mark.  |
 
 ## License
 
