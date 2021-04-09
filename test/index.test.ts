@@ -16,6 +16,12 @@ tester.run("rule", rule, {
         periodMarks: ["。"],
       },
     },
+    {
+      text: `# 見出、し`,
+      options: {
+        commaMarks: [","],
+      },
+    },
   ],
   invalid: [
     {
@@ -36,6 +42,16 @@ tester.run("rule", rule, {
           message: "Ends with period",
           line: 1,
           column: 7,
+        },
+      ],
+    },
+    {
+      text: `# 読点、を含む`,
+      errors: [
+        {
+          meessage: "Find comma",
+          line: 1,
+          column: 5,
         },
       ],
     },
