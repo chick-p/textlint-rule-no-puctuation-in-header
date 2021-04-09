@@ -16,6 +16,11 @@
     /* Report error when not all code paths in function return a value. */
     "noImplicitReturns": true,
     /* Report errors for fallthrough cases in switch statement. */
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "../../node_modules/@types",
+      "types"
+    ]
   }
 }
